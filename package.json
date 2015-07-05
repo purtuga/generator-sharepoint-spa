@@ -1,0 +1,30 @@
+{
+  "name": "generator-sharepoint-spa",
+  "version": "0.0.0",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "purtuga/generator-sharepoint-spa",
+  "author": {
+    "name": "Paul T.",
+    "email": "",
+    "url": "https://github.com/purtuga"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.19.0",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
