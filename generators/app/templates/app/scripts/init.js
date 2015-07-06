@@ -7,7 +7,7 @@
     var
     uid = "app_" + (Math.random() * 1e9 >>> 0),
 
-    div = document.createElement("div"),
+    overlayEle = document.createElement("div"),
 
     isInitDone = false,
 
@@ -17,6 +17,7 @@
         isInitDone = true;
         var appCntrEle = document.body.querySelector("#app_cntr"); // jshint ignore:line
         // BUILD_INCLUDE("<%= buildTempFolder %>/appInit.js")
+        overlayEle.style.display = "none";
     },
 
     hasSpOnBodyLoad = (typeof _spBodyOnLoadFunctionNames !== "undefined"),
@@ -24,20 +25,20 @@
     hasExecuteOrDelayUntilScriptLoaded = (typeof ExecuteOrDelayUntilScriptLoaded !== "undefined");
 
     // Display overlay on page
-    div.className = uid + "-page-overlay";
-    div.setAttribute(
+    overlayEle.className = uid + "-page-overlay";
+    overlayEle.setAttribute(
         "style",
         'height: 100%;left: 0;position: ' +
         'absolute;top: 0;width: 100%; background-color:rgb(170, 170, 170);' +
         'opacity: 0.3;filter:Alpha(Opacity=30);z-index:9999;'
     );
-    div.innerHTML = '<div style="position: absolute; font-weight: bold; ' +
+    overlayEle.innerHTML = '<div style="position: absolute; font-weight: bold; ' +
         'color: gray; background-image: ' +
         'url(\'/_layouts/images/hig_progcircle_loading24.gif\'); ' +
         'top: 15%; right: 0%; font-size: 4em; background-repeat: ' +
         'no-repeat; background-position: left center; padding-left: ' +
         '45px; letter-spacing: 0.3em;" >Loading...</div>';
-    document.body.appendChild(div);
+    document.body.appendChild(overlayEle);
 
     // If _spBodyOnLoadFunctionNames (SP2010, 2013) is defined,
     // then add our initializer to it.

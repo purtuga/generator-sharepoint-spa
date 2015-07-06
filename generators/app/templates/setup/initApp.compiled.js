@@ -1,2 +1,2 @@
 
-        appMain.start();
+        appMain.start(appCntrEle);

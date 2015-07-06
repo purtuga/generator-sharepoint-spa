@@ -1,4 +1,6 @@
-define([], function(){
+define([
+    "less!../styles/common"
+], function(){
 
     var
     /**
