@@ -1,9 +1,11 @@
 {
-  "name": "package",
-  "version": "0.0.0",
+  "name": "<%= props.appNameCamelCase %>",
+  "version": "<%= props.appVersion %>",
   "author": {
-    "name": ""
+    "name": "<%= props.authorName %>"
   },
+  "homepage": "",
+  "license": "",
   "dependencies": {},
   "devDependencies": {
     "amdclean": "^2.4.0",
