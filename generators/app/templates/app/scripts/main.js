@@ -10,13 +10,13 @@ define([
     main = /** @lends main */{
         /**
          * Starts the app.
-         * @param {HTMLElement} domAppEle
+         * @param {HTMLElement} domAppCntr
          */
-        start: function(domAppEle){
+        start: function(domAppCntr){
 
             var divEle = document.createElement("div");
-            divEle.innerHTML = "<h3>App Loaded</h3>";
-            domAppEle.appendChild(divEle);
+            divEle.innerHTML = "<h3>App main.js Loaded</h3>";
+            domAppCntr.appendChild(divEle);
 
         }
     };

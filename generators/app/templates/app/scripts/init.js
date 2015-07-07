@@ -1,12 +1,20 @@
+/**
+ * This APP loader and initializer is mean to be embedded directly into an HTML/ASPX
+ * file, in the exact location where the functionality should be displayed. It will
+ * create a <div> element that will then be used as app's container.
+ */
 (function(window, document){
     /* global _spBodyOnLoadFunctionNames, ExecuteOrDelayUntilScriptLoaded */
+
+    // Create the app container
+    var uid = "app_" + (Math.random() * 1e9 >>> 0);
+    document.write('<div id="' + uid + '"></div>'); // jshint ignore:line
+
     var appMain; // jshint ignore:line
 
 // BUILD_INCLUDE("<%= buildTempFolder %>/app.code.js")
 
     var
-    uid = "app_" + (Math.random() * 1e9 >>> 0),
-
     overlayEle = document.createElement("div"),
 
     isInitDone = false,
@@ -15,7 +23,7 @@
     initApp = function(){
         if (isInitDone) {return;}
         isInitDone = true;
-        var appCntrEle = document.body.querySelector("#app_cntr"); // jshint ignore:line
+        var appCntrEle = document.body.querySelector("#" + uid); // jshint ignore:line
         // BUILD_INCLUDE("<%= buildTempFolder %>/appInit.js")
         overlayEle.style.display = "none";
     },

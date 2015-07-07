@@ -39,11 +39,6 @@
 <asp:Content ContentPlaceHolderId="PlaceHolderPageImage" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderLeftNavBar" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderNavSpacer" runat="server"></asp:Content>
-<asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
-    <div id="app_cntr">
-        <h1>App</h1>
-        <p>generator-sharepoint-spa generated app.</p>
-        <div>Build: @BUILD</div>
-    </div>
+<asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">s
     <!-- BUILD_INCLUDE("<%= buildTempFolder %>/appLoad.html") -->
 </asp:Content>
