@@ -24,7 +24,57 @@ module.exports = function(grunt) {
     buildId     = (new Date()).getTime(),
     _           = require("grunt/node_modules/lodash/lodash.js"),
     fs          = require('fs'),
-    path        = require('path');
+    path        = require('path'),
+    htmlMinifier= require('html-minifier').minify,
+    isHtmlFile  = /\.html|htm$/i;
+
+
+    /**
+     * Grunt copy task processor that returns minified HTML markup. Meant to be
+     * used with the processContent/process option of the copy task.
+     *
+     * @param {String} fileContent
+     * @param {String} filePath
+     * @return {String} file content
+     *
+     * @see https://www.npmjs.com/package/html-minifier
+     *
+     * @example
+     *
+     * copy: {
+     *      build: {
+     *          src: '',
+     *          dest: '',
+     *          expand: true,
+     *          options: {
+     *              processConent: minifyHtml
+     *          }
+     *      }
+     * }
+     *
+     */
+    function fileProcessorMinifyHtml(fileContent, filePath){
+
+        if (isHtmlFile.test(filePath)) {
+
+            grunt.verbose.writeln("minifyHtml: minifying: " + filePath);
+
+            return htmlMinifier(fileContent, {
+                    removeComments              : true,
+                    collapseWhitespace          : true,
+                    conservativeCollapse        : true,
+                    collapseBooleanAttributes   : true,
+                    removeEmptyAttributes       : true,
+                    caseSensitive               : true,
+                    ignoreCustomComments        : [
+                                                    /^\s+ko/,
+                                                    /\/ko\s+$/
+                                                ]
+                });
+
+        }
+        return fileContent;
+    }
 
 
     /**
@@ -287,6 +337,7 @@ module.exports = function(grunt) {
             ],
             build: [
                 '<%= buildFolder %>/app/app.aspx',
+                '<%= buildFolder %>/app/scripts/init.js',
                 '<%= buildTempFolder %>/appInit.js',
                 '<%= buildTempFolder %>/appLoad.html'
             ]
@@ -359,17 +410,30 @@ module.exports = function(grunt) {
                 options: {
                     expand: true,
                     processContent: function(fileData, srcPath){
-                        return includeFile(
-                                    replaceBuildVariables(fileData, srcPath),
-                                    srcPath
-                                );
+                        // Skip files from vendor/ folder
+                        if (srcPath.indexOf("app/vendor/") > -1) {
+                            return fileData;
+                        }
+                        // Process the content
+                        var content = fileProcessorMinifyHtml(fileData, srcPath);
+                        content = replaceBuildVariables(content, srcPath);
+                        content = includeFile(content, srcPath);
+                        return content;
                     }
                 },
                 expand: true,
                 filter: onlyNew(['copy', 'build']),
                 dest: "<%= buildFolder %>",
+                // Any other folder added to the APP folder should be added below.
+                // Also, any new vendor library should be added below so that its
+                // included in the build.
                 src: [
-                    "app/**/*"
+                    "app/*.aspx",
+                    "app/scripts/**/*",
+                    "app/styles/**/*",
+                    "app/vendor/requirejs/require.js",
+                    "app/vendor/requirejs-text/text.js",
+                    "app/vendor/require-less/*.js"
                 ]
             },
             deploy: {
@@ -438,12 +502,19 @@ module.exports = function(grunt) {
         },
 
         requirejs: {
-
+            // Options Documented here:
+            //      https://github.com/jrburke/r.js/blob/master/build/example.build.js
             compile: {
                 options: {
                     baseUrl: "<%= buildFolder %>/app",
                     paths: _.extend({}, requireCnfg.paths, {
                         'less-builder': 'vendor/require-less/less-builder'
+                        // Any library that should not be excluded in the single
+                        // compiled module, should be listed here with a value of
+                        // 'empty'. Example: to exclude jquery, do the following:
+                        //            'jquery': 'empty'
+                        // See:
+                        //    http://requirejs.org/docs/optimization.html#empty
                     }),
                     less: {
                         relativeUrls:   true,

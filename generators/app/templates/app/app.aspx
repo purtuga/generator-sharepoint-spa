@@ -39,6 +39,6 @@
 <asp:Content ContentPlaceHolderId="PlaceHolderPageImage" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderLeftNavBar" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderNavSpacer" runat="server"></asp:Content>
-<asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">s
+<asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
     <!-- BUILD_INCLUDE("<%= buildTempFolder %>/appLoad.html") -->
 </asp:Content>

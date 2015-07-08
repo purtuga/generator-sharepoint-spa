@@ -1,6 +1,10 @@
 define([
+    "text!./main.html",
+    // -modules not needing a reference----------
     "less!../styles/common"
-], function(){
+], function(
+    viewTemplate
+){
 
     var
     /**
@@ -15,7 +19,7 @@ define([
         start: function(domAppCntr){
 
             var divEle = document.createElement("div");
-            divEle.innerHTML = "<h3>App main.js Loaded</h3>";
+            divEle.innerHTML = viewTemplate;
             domAppCntr.appendChild(divEle);
 
         }
