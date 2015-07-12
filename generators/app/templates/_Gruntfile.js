@@ -435,7 +435,7 @@ module.exports = function(grunt) {
                     "app/styles/**/*",
                     "app/vendor/requirejs/require.js",
                     "app/vendor/requirejs-text/text.js",
-                    "app/vendor/require-less/*.js"
+                    "app/vendor/require-less/*.js"<$=props.gruntfile.join('')$>
                 ]
             },
             deploy: {
