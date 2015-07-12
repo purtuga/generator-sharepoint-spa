@@ -390,6 +390,38 @@ module.exports = function(grunt) {
                     '<%= buildFolder %>/app.run.aspx': 'app/app.aspx'
                 }
             },
+            spaDebugCode: {
+                options: {
+                    expand: true,
+                    processContent: function(fileData, srcPath){
+                        return includeFile(
+                                    replaceBuildVariables(fileData, srcPath),
+                                    srcPath
+                                );
+                    }
+                },
+                expand: true,
+                files: {
+                    '<%= buildTempFolder %>/appInit.js': 'setup/initApp.compiled.js',
+                    '<%= buildTempFolder %>/spa.min.js': 'app/scripts/init.js'
+                }
+            },
+            spaDebugExe: {
+                options: {
+                    expand: true,
+                    processContent: function(fileData, srcPath){
+                        return includeFile(
+                                    replaceBuildVariables(fileData, srcPath),
+                                    srcPath
+                                );
+                    }
+                },
+                expand: true,
+                files: {
+                    '<%= buildTempFolder %>/appLoad.html': 'setup/load.compiled.html',
+                    '<%= buildFolder %>/app.debug.aspx': 'app/app.aspx'
+                }
+            },
             buildPrep: {
                 options: {
                     expand: true,
@@ -445,7 +477,8 @@ module.exports = function(grunt) {
                 cwd: "<%= buildFolder %>",
                 src:    [
                    "app/**/*",
-                   "app.run.aspx"
+                   "app.run.aspx",
+                   "app.debug.aspx"
                 ],
                 dest:   "<%= userOpt.deployLocation %>",
                 expand: true,
@@ -509,6 +542,7 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     baseUrl: "<%= buildFolder %>/app",
+                    urlArgs: buildId,
                     paths: _.extend({}, requireCnfg.paths, {
                         'less-builder': 'vendor/require-less/less-builder'
                         // Any library that should not be excluded in the single
@@ -635,13 +669,17 @@ module.exports = function(grunt) {
     });
 
     /**
-     * Builds the Single Page Application into 1 single file
+     * Builds the Single Page Application into 1 single file. This builds two files
+     * -    One with the minified code; app.run.aspx
+     * -    One with the non-minified code: app.debug.aspx
      */
     grunt.registerTask('spa', function(){
 
         grunt.task.run([
             "build",
             "requirejs:compile",
+            "copy:spaDebugCode",
+            "copy:spaDebugExe",
             "copy:spaCode",
             "uglify:spa",
             "copy:spaExe"

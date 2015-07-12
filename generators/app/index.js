@@ -94,9 +94,16 @@ module.exports = yeoman.generators.Base.extend({
             });
 
             this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
-            this.fs.copy(this.templatePath('app'), this.destinationPath('app'));
-            this.fs.copy(this.templatePath('setup'), this.destinationPath('setup'));
 
+            // Copy the app folder and insert app name into the aspx file
+            this.fs.copy(this.templatePath('app'), this.destinationPath('app'));
+            this.fs.copyTpl(this.templatePath('app/app.aspx'), this.destinationPath('app/app.aspx'), this, {
+                escape:         /<\$-([\s\S]+?)\$>/g,
+                evaluate:       /<\$([\s\S]+?)\$>/g,
+                interpolate:    /<\$=([\s\S]+?)\$>/g
+            });
+
+            this.fs.copy(this.templatePath('setup'), this.destinationPath('setup'));
             this.fs.copyTpl(this.templatePath('setup/require.config.json'), this.destinationPath('setup/require.config.json'), this);
 
             this.fs.copy(this.templatePath('test'), this.destinationPath('test'));

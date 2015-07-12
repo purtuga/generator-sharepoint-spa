@@ -1,7 +1,6 @@
 {
             "context": "app",
             "baseUrl": "./",
-            "urlArgs": buildNumber,
             "paths": {
                 "less":       "vendor/require-less/less",
                 "lessc":      "vendor/require-less/lessc",
