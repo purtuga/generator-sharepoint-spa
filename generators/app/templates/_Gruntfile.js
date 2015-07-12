@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
         grunt.file.write('me.build.json',
             JSON.stringify({
-                buildLocation:  "./build",
+                buildLocation:  "./_build",
                 deployLocation: ""
             }, null, 4)
         );
@@ -401,10 +401,12 @@ module.exports = function(grunt) {
                     }
                 },
                 expand: true,
-                files: {
-                    '<%= buildTempFolder %>/appInit.js': 'setup/initApp.requirejs.js',
-                    '<%= buildTempFolder %>/appLoad.html': 'setup/load.requirejs.html'
-                }
+                files: [
+                    {
+                        '<%= buildTempFolder %>/appInit.js': 'setup/initApp.requirejs.js',
+                        '<%= buildTempFolder %>/appLoad.html': 'setup/load.requirejs.html'
+                    }
+                ]
             },
             build: {
                 options: {
@@ -482,7 +484,7 @@ module.exports = function(grunt) {
             },
             test : {
                 src : ['test/**/*.js']
-            },
+            }
         },
         watch : {
             gruntfile : {

@@ -1,2 +1,2 @@
 
-        appMain.start(appCntrEle);
+        appMain.start(appCntrEle, overlayEle);

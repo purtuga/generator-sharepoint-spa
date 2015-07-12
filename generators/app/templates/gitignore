@@ -35,5 +35,3 @@ me.*
 _build*
 app/vendor
 node_modules
-
-

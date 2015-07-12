@@ -14,12 +14,6 @@ module.exports = yeoman.generators.Base.extend({
 
         var prompts = [
             {
-                type : 'confirm',
-                name : 'someOption',
-                message : 'Ready to create a SPA for SharePoint?',
-                default : true
-            },
-            {
                 type : 'input',
                 name : 'appName',
                 message : 'What is the App name?',
@@ -46,15 +40,23 @@ module.exports = yeoman.generators.Base.extend({
                 choices: [
                     {
                         name: "SPWidgets - jQuery SharePoint Widgets",
-                        value: ",\n        " + '"SPWidgets": "purtuga/SPWidgets#^2.5.2"'
+                        value: {
+                            bower:      ",\n        " + '"SPWidgets": "purtuga/SPWidgets#^2.5.2"',
+                            requirejs:  ",\n                " + '"SPWidgets": "vendor/SPWidgets/src"',
+                            gruntfile:  "\n" + '                    "app/vendor/SPWidgets/src/**/*"'
+                        }
                     },
                     {
                         name: "SPServices - jQuery SharePoint WebServices API",
-                        value: ",\n        " + '"SPServices": "sympmarc/SPServices#2014.02"'
+                        value: {
+                            bower: ",\n        " + '"SPServices": "sympmarc/SPServices#2014.02"'
+                        }
                     },
                     {
                         name: "SharepointPlus - Extended features for SharePoint",
-                        value: ",\n        " + '"SharepointPlus": "Aymkdn/SharepointPlus#^3.0.10"'
+                        value: {
+                            bower: ",\n        " + '"SharepointPlus": "Aymkdn/SharepointPlus#^3.0.10"'
+                        }
                     }
                 ],
                 default : ''
@@ -63,7 +65,17 @@ module.exports = yeoman.generators.Base.extend({
         ];
 
         this.prompt(prompts, function(props) {
-            this.props = props;
+            this.props              = props;
+            this.props.bowerConfig  = [];
+            this.props.requirejs    = [];
+            this.props.gruntfile    = [];
+
+            this.props.libraries.forEach(function(lib){
+                this.props.bowerConfig.push(lib.bower);
+                this.props.requirejs.push(lib.requirejs);
+                this.props.gruntfile.push(lib.gruntfile);
+            }.bind(this) );
+
             this.props.appNameCamelCase = _.camelCase(this.props.appName);
             // To access props later use this.props.someOption;
             done();
@@ -77,8 +89,12 @@ module.exports = yeoman.generators.Base.extend({
             this.fs.copyTpl(this.templatePath('_bower.json'), this.destinationPath('bower.json'), this);
             this.fs.copy(this.templatePath('_Gruntfile.js'), this.destinationPath('Gruntfile.js'));
             this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
+
             this.fs.copy(this.templatePath('app'), this.destinationPath('app'));
+
             this.fs.copy(this.templatePath('setup'), this.destinationPath('setup'));
+            this.fs.copyTpl(this.templatePath('setup/require.config.json'), this.destinationPath('setup/require.config.json'), this);
+
             this.fs.copy(this.templatePath('test'), this.destinationPath('test'));
         },
 

@@ -14,13 +14,20 @@ define([
     main = /** @lends main */{
         /**
          * Starts the app.
-         * @param {HTMLElement} domAppCntr
+         * @param {HTMLElement} appCntrEle
+         *      The HTMl element where the app should live
+         *
+         * @param {HTMLElement} overlayEle
+         *      The overlay (ui blocker) for the app.
          */
-        start: function(domAppCntr){
+        start: function(appCntrEle, overlayEle){
 
             var divEle = document.createElement("div");
             divEle.innerHTML = viewTemplate;
-            domAppCntr.appendChild(divEle);
+            appCntrEle.appendChild(divEle);
+
+            // hide the overlay
+            overlayEle.style.display = "none";
 
         }
     };
