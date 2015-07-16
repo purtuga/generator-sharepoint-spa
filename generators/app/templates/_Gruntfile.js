@@ -495,11 +495,23 @@ module.exports = function(grunt) {
         },
         uglify : {
             options : {
-                banner : '<%= banner %>'
+                banner :    '<%= banner %>',
+                sourceMap:  true
             },
             spa: {
                 src:    '<%= buildTempFolder %>/spa.js',
                 dest:   '<%= buildTempFolder %>/spa.min.js'
+            },
+            app: {
+                options: {
+                    sourceMap: true
+                },
+                files: [{
+                    expand: true,
+                    cwd:    "<%= buildFolder %>/app/scripts",
+                    src:    "**/*.js",
+                    dest:   "<%= buildFolder %>/app/scripts"
+                }]
             }
         },
 
@@ -682,7 +694,8 @@ module.exports = function(grunt) {
             "copy:spaDebugExe",
             "copy:spaCode",
             "uglify:spa",
-            "copy:spaExe"
+            "copy:spaExe",
+            "uglify:app"
         ]);
 
     });
