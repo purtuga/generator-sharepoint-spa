@@ -1,7 +1,7 @@
 {
   "name": "generator-sharepoint-spa",
   "version": "0.1.0",
-  "description": "Yeoman generator for creating and delivering SharePoint Single Page Applications",
+  "description": "Yeoman generator for creating and delivering SharePoint Single Page Applications. Sets up a modular structure using AMD, along with requireJS, requireJS Text and less plugins, as well as a Grunt build process.",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "purtuga/generator-sharepoint-spa",
@@ -17,7 +17,12 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "sharepoint",
+    "spa",
+    "single page application",
+    "web app",
+    "app"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
