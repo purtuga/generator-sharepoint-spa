@@ -1,27 +1,21 @@
 # generator-sharepoint-spa [![Build Status](https://secure.travis-ci.org/purtuga/generator-sharepoint-spa.png?branch=master)](https://travis-ci.org/purtuga/generator-sharepoint-spa)
 
-> [Yeoman](http://yeoman.io) generator
+A [Yeoman](http://yeoman.io) generator for creating and distributing SharePoint Single Page Applications without the need for the App/Add-In model.  This generator will setup a project with functional boilerplate to generate an Web App that is structured using Asynchronous Module Definition (AMD) and, through the use of a Grunt build process, generates a single delivery file (`aspx`) containing the entire app.
+
+The boilerplate also includes the use of following:
+
+-   requireJS
+-   requireJS Text plugin
+-   requireJS Less plugin
+
+Optionally, the following libraries can also be included:
+
+-   [SPWidgets](http://purtuga.github.io/SPWidgets/)
+-   [SPServices](https://github.com/sympmarc/SPServices)
 
 
-## Getting Started
+# Usage
 
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```bash
-npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
 To install generator-sharepoint-spa from npm, run:
 
@@ -34,12 +28,6 @@ Finally, initiate the generator:
 ```bash
 yo sharepoint spa
 ```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
 ## License
