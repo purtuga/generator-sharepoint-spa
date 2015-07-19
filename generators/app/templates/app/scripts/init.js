@@ -6,6 +6,8 @@
  * This app initializer is used for both the compile (production) version of the app
  * as well as the development version (which uses require.JS). The build process will
  * take of inserting the appropriate appInit.js file below.
+ *
+ * MIT | (c) Paul Tavares | purtuga.github.io
  */
 (function(window, document){
     /* global _spBodyOnLoadFunctionNames, ExecuteOrDelayUntilScriptLoaded */
