@@ -69,6 +69,7 @@ module.exports = yeoman.generators.Base.extend({
             this.props.bowerConfig  = [];
             this.props.requirejs    = [];
             this.props.gruntfile    = [];
+            this.props.libraries    = this.props.libraries || [];
 
             this.props.libraries.forEach(function(lib){
                 this.props.bowerConfig.push(lib.bower);
