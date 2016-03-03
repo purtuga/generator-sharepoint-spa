@@ -25,8 +25,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--[if lt IE 10]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.3/es5-shim.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.13/es5-shim.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.13/es5-sham.min.js">
     <![endif]-->
 
 </asp:Content>

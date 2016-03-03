@@ -557,7 +557,7 @@ module.exports = function(grunt) {
                     urlArgs: buildId,
                     paths: _.extend({}, requireCnfg.paths, {
                         'less-builder': 'vendor/require-less/less-builder'
-                        // Any library that should not be excluded in the single
+                        // Any library that should not be included in the single
                         // compiled module, should be listed here with a value of
                         // 'empty'. Example: to exclude jquery, do the following:
                         //            'jquery': 'empty'
