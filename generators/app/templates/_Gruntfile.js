@@ -318,6 +318,10 @@ module.exports = function(grunt) {
 
         userOpt: userOpt,
 
+        appDistFileName: "<%= pkg.name %>.run.aspx",
+
+        appDistDebugFileName: "<%= pkg.name %>.debug.aspx",
+
         buildFolder: "<%= userOpt.buildLocation %>/<%= pkg.name %>",
 
         buildTempFolder: "<%= buildFolder %>/_temp",
@@ -387,7 +391,7 @@ module.exports = function(grunt) {
                 expand: true,
                 files: {
                     '<%= buildTempFolder %>/appLoad.html': 'setup/load.compiled.html',
-                    '<%= buildFolder %>/app.run.aspx': 'app/app.aspx'
+                    '<%= buildFolder %>/<%= appDistFileName %>.aspx': 'app/app.aspx'
                 }
             },
             spaDebugCode: {
@@ -419,7 +423,7 @@ module.exports = function(grunt) {
                 expand: true,
                 files: {
                     '<%= buildTempFolder %>/appLoad.html': 'setup/load.compiled.html',
-                    '<%= buildFolder %>/app.debug.aspx': 'app/app.aspx'
+                    '<%= buildFolder %>/<%= appDistDebugFileName %>.aspx': 'app/app.aspx'
                 }
             },
             buildPrep: {
@@ -467,7 +471,7 @@ module.exports = function(grunt) {
                     "app/styles/**/*",
                     "app/vendor/requirejs/require.js",
                     "app/vendor/requirejs-text/text.js",
-                    "app/vendor/require-less/*.js"<$=props.gruntfile.join('')$>
+                    "app/vendor/require-less/*.js"<$- props.gruntfile.join('') $>
                 ]
             },
             deploy: {
@@ -538,7 +542,7 @@ module.exports = function(grunt) {
             },
             src : {
                 files : [
-                    'src/**/*'
+                    'app/**/*'
                 ],
                 tasks : ['jshint:src']
             },
