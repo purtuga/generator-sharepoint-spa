@@ -391,7 +391,7 @@ module.exports = function(grunt) {
                 expand: true,
                 files: {
                     '<%= buildTempFolder %>/appLoad.html': 'setup/load.compiled.html',
-                    '<%= buildFolder %>/<%= appDistFileName %>.aspx': 'app/app.aspx'
+                    '<%= buildFolder %>/<%= appDistFileName %>': 'app/app.aspx'
                 }
             },
             spaDebugCode: {
@@ -423,7 +423,7 @@ module.exports = function(grunt) {
                 expand: true,
                 files: {
                     '<%= buildTempFolder %>/appLoad.html': 'setup/load.compiled.html',
-                    '<%= buildFolder %>/<%= appDistDebugFileName %>.aspx': 'app/app.aspx'
+                    '<%= buildFolder %>/<%= appDistDebugFileName %>': 'app/app.aspx'
                 }
             },
             buildPrep: {

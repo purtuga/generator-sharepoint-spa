@@ -5,7 +5,7 @@
                 "less":       "vendor/require-less/less",
                 "lessc":      "vendor/require-less/lessc",
                 "normalize":  "vendor/require-less/normalize",
-                "text":       "vendor/requirejs-text/text"<%= props.requirejs.join('') %>
+                "text":       "vendor/requirejs-text/text"<%- props.requirejs.join('') %>
             },
             "less": {
                 "relativeUrls":   true,
