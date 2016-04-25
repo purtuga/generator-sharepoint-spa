@@ -481,8 +481,7 @@ module.exports = function(grunt) {
                 cwd: "<%= buildFolder %>",
                 src:    [
                    "app/**/*",
-                   "app.run.aspx",
-                   "app.debug.aspx"
+                   "*.aspx"
                 ],
                 dest:   "<%= userOpt.deployLocation %>",
                 expand: true,
