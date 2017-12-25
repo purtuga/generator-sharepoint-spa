@@ -691,6 +691,7 @@ module.exports = function(grunt) {
     grunt.registerTask('spa', function(){
 
         grunt.task.run([
+            "clean",
             "build",
             "requirejs:compile",
             "copy:spaDebugCode",
