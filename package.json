@@ -1,6 +1,6 @@
 {
   "name": "generator-sharepoint-spa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yeoman generator for creating and delivering SharePoint Single Page Applications. Sets up a modular structure using AMD, along with requireJS, requireJS Text and less plugins, as well as a Grunt build process.",
   "license": "MIT",
   "main": "app/index.js",
